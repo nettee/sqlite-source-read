@@ -20,7 +20,7 @@ Pager 主要实现了三个功能：ACID, log, cache。下面分别介绍。
 
 只看最基本的方法，然后跳过。
 
-+ [ ] 看 SQLite 是如何实现 ACID 的： [Atomic Commit In SQLite](https://link.zhihu.com/?target=http%3A//www.sqlite.org/atomiccommit.html)
++ [ ] 看 SQLite 是如何实现 ACID 的： [Atomic Commit In SQLite](https://www.sqlite.org/atomiccommit.html)
 + [ ] 看书 _SQLite Database System: Design and Implementation_ 中的第 3,4 章，增进理解
 
 ### Cache
