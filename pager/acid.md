@@ -67,7 +67,7 @@ SQLite 中 lock 的类型：
   + 允许任意多个 shared lock 存在，但不允许新的 shared lock 创建，不允许除 shared lock 以外的任何 lock 存在
 
 | Lock | 语义 | 允许读 | 允许写 | 是否允许多个该 lock | 是否允许其他 lock |
-| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| :-: | :-: | :-: | :-: | :-: | :-: |
 | Shared lock | 读数据库文件 | Y | N | Y | 不允许 exclusive lock，允许其他 |
 | Exclusive lock | 写数据库文件 | Y | Y | N | 不允许任何 |
 | Reserved lock | 计划写数据库文件 | Y | N | N | 允许多个 shared lock，不允许其他 |
