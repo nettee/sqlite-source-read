@@ -8,9 +8,9 @@
 
 OS Interface 是很薄的一层, 主要是为了提高可移植性而被设计出来的。
 
-- [x] 看 [The SQLite OS Interface or "VFS"](https://www.sqlite.org/vfs.html)
-- [x] 看源码中的 `test_demovfs.c`
-- [x] 搞清三个结构体： `sqlite3_vfs`, `sqlite3_io_methods`, `sqlite3_file`
++ [x] 看 [The SQLite OS Interface or "VFS"](https://www.sqlite.org/vfs.html)
++ [x] 看源码中的 `test_demovfs.c`
++ [x] 搞清三个结构体： `sqlite3_vfs`, `sqlite3_io_methods`, `sqlite3_file`
 
 ## Pager
 
@@ -20,8 +20,8 @@ Pager 主要实现了三个功能：ACID, log, cache。下面分别介绍。
 
 只看最基本的方法，然后跳过。
 
-+ [ ] 看 SQLite 是如何实现 ACID 的： [Atomic Commit In SQLite](https://www.sqlite.org/atomiccommit.html)
-+ [ ] 看书 _SQLite Database System: Design and Implementation_ 中的第 3,4 章，增进理解
++ [x] 看 SQLite 是如何实现 ACID 的： [Atomic Commit In SQLite](https://www.sqlite.org/atomiccommit.html)
++ [x] 看书 _SQLite Database System: Design and Implementation_ 中的第 3,4 章，增进理解
 
 ### Cache
 

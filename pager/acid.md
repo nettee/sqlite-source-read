@@ -101,4 +101,3 @@ Pager 模块负责获取适当的 lock。Pager 调用 `sqlite3OsLock` 来获取�
 
 大部分情况下，用户只需要声明 transaction，locking 的操作都是由系统完成的（更具体点，是 pager 模块完成的）。
 
-Linux 系统只支持两种 lock 模式（read lock 和 write lock），而 SQLite 在其上建立了四种 lock 模式。SQLite 在不同的文件区域中使用 Linux lock。数据库文件中有一个 lock bytes 区域，有 pending byte, reserved byte, shared bytes (many) 等，SQLite 通过对不同的 bytes 加 lock 来实现四种 lock 模式。其中 exclusive lock 是对所有的 bytes 加上 write lock。

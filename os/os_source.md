@@ -9,9 +9,9 @@
 
 ## `sqlite3_vfs`, `sqlite3_file`, `sqlite3_io_methods` 类
 
-这三个类都定义在模块 `sqlite.h.in` 中，源码如下：
-
 ```C
+/* File: sqlite.h.in */
+
 typedef struct sqlite3_vfs sqlite3_vfs;
 typedef void (*sqlite3_syscall_ptr)(void);
 struct sqlite3_vfs {
@@ -55,6 +55,8 @@ struct sqlite3_vfs {
 ```
 
 ```C
+/* File: sqlite.h.in */
+
 typedef struct sqlite3_file sqlite3_file;
 struct sqlite3_file {
   const struct sqlite3_io_methods *pMethods;  /* Methods for an open file */
@@ -62,6 +64,8 @@ struct sqlite3_file {
 ```
 
 ```C
+/* File: sqlite.h.in */
+
 typedef struct sqlite3_io_methods sqlite3_io_methods;
 struct sqlite3_io_methods {
   int iVersion;
@@ -92,9 +96,11 @@ struct sqlite3_io_methods {
 
 其中，`sqlite3_vfs::xOpen` 包含 `sqlite3_file` 的指针；`sqlite3_file` 包含 `sqlite3_io_methods` 的指针。
 
-要自己实现一个 `sqlite3_vfs` 类需要按照接口定义各种函数，例如 `test_demovfs.c` 中的一个示例（其中 `demoOpen`, `demoDelete` 等一系列都是前面自己定义的各种函数）：
+要自己实现一个 `sqlite3_vfs` 类需要按照接口定义各种函数，例如下面的 demo（其中 `demoOpen`, `demoDelete` 等一系列都是前面自己定义的各种函数）：
 
 ```C
+/* File: test_demovfs.c */
+
 sqlite3_vfs *sqlite3_demovfs(void){
   static sqlite3_vfs demovfs = {
     1,                            /* iVersion */
