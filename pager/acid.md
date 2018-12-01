@@ -2,7 +2,22 @@
 
 ## 基础知识
 
-锁的概念：shared lock (read lock) 和 exclusive lock (write lock)
+ACID 是指：
+
++ _Atomicity_ (原子性) 
+  + 每个 transaction 中的操作要么全部生效，要么全部不生效
++ _Consistency_ (一致性)
+  + Transaction 不得破坏数据库的一致性约束，包括 constraints, cascades, triggers 等
++ _Isolation_ (隔离性)
+  + 多个 transactions 可以并行执行，效果和它们顺序执行时等价
++ _Durability_ (持久性)
+  + 一旦 transaction 得到 commit，所有所做的修改不会因为断电等原因丢失
+
+
+Lock (锁):
+
++ Shared lock (read lock)
++ Exclusive lock (write lock)
 
 ## Atomic Commit In SQLite 文章
 
@@ -36,7 +51,7 @@ Transaction 分为 read-transaction 和 write-transaction。在 read-transaction
 + _User transaction_ (or _explicit transaction_)
   + SQLite 退出 autocommit 模式
   + 通过 `begin ... commit` 或者 `begin ... rollback` 语句声明
-  + 缓解对每个语句都自动添加 write-transaction 的开销 
+  + 缓解对每个语句都自动添加 write-transaction 的开销
   + 只会影响 write-transaction；read-transaction 仍然是自动管理的
 
 在 transaction 中可以设置 _savepoint_。它表示一个良好的数据库状态，回滚时可以回滚到某个 savepoint。
@@ -87,4 +102,3 @@ Pager 模块负责获取适当的 lock。Pager 调用 `sqlite3OsLock` 来获取�
 大部分情况下，用户只需要声明 transaction，locking 的操作都是由系统完成的（更具体点，是 pager 模块完成的）。
 
 Linux 系统只支持两种 lock 模式（read lock 和 write lock），而 SQLite 在其上建立了四种 lock 模式。SQLite 在不同的文件区域中使用 Linux lock。数据库文件中有一个 lock bytes 区域，有 pending byte, reserved byte, shared bytes (many) 等，SQLite 通过对不同的 bytes 加 lock 来实现四种 lock 模式。其中 exclusive lock 是对所有的 bytes 加上 write lock。
-

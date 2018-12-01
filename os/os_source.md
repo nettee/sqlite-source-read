@@ -3,7 +3,9 @@
 ## 源码索引
 
 + `sqlite.h.in`
+  + `sqlite3_vfs`, `sqlite3_file`, `sqlite3_io_methods` 接口定义
 + `test_demovfs.c`
+  + 一个 VFS 的示例实现
 
 ## `sqlite3_vfs`, `sqlite3_file`, `sqlite3_io_methods` 类
 
