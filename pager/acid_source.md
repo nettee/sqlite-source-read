@@ -48,7 +48,7 @@ static int unixLock(sqlite3_file *id, int eFileLock) {
 + RESERVED -> (PENDING) -> EXCLUSIVE
 + PENDING -> EXCLUSIVE
 
-`unixLock()` 要利用 POSIX 系统的 lock primitives（`fcntl()` 函数）来实现上述的四种 lock 类型和五种 lock 状态转移。不过 POSIX 中只有两种类型的 lock: read lock 和 write lock（这样叫是为了不和 SQLite 中的 lock 名称混淆）。SQLite 在数据库文件中定义了一些特殊的 bytes。通过在这些 bytes 上加锁来表示四种 lock 类型。
+`unixLock()` 要利用 POSIX 系统的 lock primitives 来实现上述的四种 lock 类型和五种 lock 状态转移。我们知道，POSIX 提供 `fcntl()` 函数对文件进行 lock 操作。`fcntl()` 函数实际上提供的是 byte-range locking 功能，也就是可以对文件中的某些字节进行 locking。不过 byte-range locking 只支持两种类型的 lock: read lock 和 write lock（这样叫是为了不和 SQLite 中的 lock 名称混淆）。因此，SQLite 在数据库文件中定义了一些特殊的 bytes。通过这些 bytes 上 lock 的不同状态来表示四种 lock。
 
 SQLite 定义了 1 字节的 pending byte，1 字节的 reserved byte，以及 510 字节的 shared bytes。简化版的定义如下：
 
